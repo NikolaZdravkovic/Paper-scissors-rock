@@ -54,6 +54,14 @@ const game = () => {
 
 
     };
+    // Ovde kreiramo score board gde cemo ispisivati nase rezultate i od kompjutera
+    const updateScore = () => {
+        const playerScore = document.querySelector('.player-score p');
+        const computerScore = document.querySelector('.computer-score p');
+
+        playerScore.textContent = scorePlayer; //definisali smo varijable iz html i dodelili mu vrednost scorePlayer
+        computerScore.textContent = scoreComp; //definisali smo varijable iz html i dodelili mu vrednost scoreComp
+    }
 
     // Ovde pisem logiku igrice sa uslovima 
 
@@ -69,10 +77,15 @@ const game = () => {
         // ako je rock
         if (playerChoce === 'rock') {
             if (computerChoice === 'scissors') {
-                winner.textContent = 'Player wins'
+                winner.textContent = 'Player wins';
+                // ovde sada vrsimo inkrementaciju ako player pobedi, povecavamo mu +1 na score boardu gore
+                scorePlayer++;
+                updateScore(); // i ovde pozivamo update score svaki put kada izbaci rezlutat
                 return;
             } else {
                 winner.textContent = 'Computer wins'
+                scoreComp++; // Ista prica je i za komp, povecavamo njemu skor +1 ako je pobedio
+                updateScore();
                 return;
             }
         };
@@ -80,9 +93,13 @@ const game = () => {
         if (playerChoce === 'paper') {
             if (computerChoice === 'rock') {
                 winner.textContent = 'Player wins'
+                scorePlayer++;
+                updateScore();
                 return;
             } else {
                 winner.textContent = 'Computer wins'
+                scoreComp++;
+                updateScore();
                 return;
             }
         }
@@ -91,9 +108,13 @@ const game = () => {
         if (playerChoce === 'scissors') {
             if (computerChoice === 'paper') {
                 winner.textContent = 'Player wins'
+                scorePlayer++;
+                updateScore();
                 return;
             } else {
                 winner.textContent = 'Computer wins'
+                scoreComp++;
+                updateScore();
                 return;
             }
         }
