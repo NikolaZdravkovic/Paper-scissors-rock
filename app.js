@@ -49,6 +49,49 @@ const game = () => {
 
     };
 
+    // Ovde pisem logiku igrice sa uslovima 
+
+    const compareHands = (playerChoce, computerChoice) => {
+        // menjam text umesto naslova
+        const winner = document.querySelector('.winner');
+        // ako je izjedanceno
+        if (playerChoce === computerChoice) {
+            winner.textContent = 'It is a tie!';
+            //ako dodjemo do ovde ,return ide samo da bi izasao iz funckije
+            return;
+        }
+        // ako je rock
+        if (playerChoce === 'rock') {
+            if (computerChoice === 'scissors') {
+                winner.textContent = 'Player wins'
+                return;
+            } else {
+                winner.textContent = 'Computer wins'
+                return;
+            }
+        };
+        //ako je paper
+        if (playerChoce === 'paper') {
+            if (computerChoice === 'rock') {
+                winner.textContent = 'Player wins'
+                return;
+            } else {
+                winner.textContent = 'Computer wins'
+                return;
+            }
+        }
+        //ako je scissors 
+
+        if (playerChoce === 'scissors') {
+            if (computerChoice === 'paper') {
+                winner.textContent = 'Player wins'
+                return;
+            } else {
+                winner.textContent = 'Computer wins'
+                return;
+            }
+        }
+    }
 
     //   ovde pozivam sve inner funckije
     startGame();
