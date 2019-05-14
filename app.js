@@ -41,6 +41,12 @@ const game = () => {
                 const computerNumber = Math.floor(Math.random() * 3);
                 // spajam math.ranodm sa arrayom 
                 const computerChoice = computerOptions[computerNumber];
+                // Ovde pozivamo compareHands
+                compareHands(this.textContent, computerChoice)
+                // Menjamo slike u skladu sa izborom
+
+                playerHand.src = `./images/${this.textContent}.png`;
+                computerHand.src = `./images/${computerChoice}.png`;
 
 
             })
@@ -57,7 +63,7 @@ const game = () => {
         // ako je izjedanceno
         if (playerChoce === computerChoice) {
             winner.textContent = 'It is a tie!';
-            //ako dodjemo do ovde ,return ide samo da bi izasao iz funckije
+
             return;
         }
         // ako je rock
