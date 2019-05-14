@@ -20,11 +20,39 @@ const game = () => {
 
 
     }
+    //Povezujem dugmice
+
+    const playMatch = () => {
+        //ovde sve buttone u clasi options pozivamo sa queryselctorom
+        const options = document.querySelectorAll('.options button');
+        const playerHand = document.querySelector('.player-hand');
+        const computerHand = document.querySelector('.computer-hand');
+        //Kompove opcije
+        //Pravim array kako bih prosao kroz loop kasnije
+        const computerOptions = ['rock', 'paper', 'scissors'];
 
 
-    //   ovde cu pozivati sve inner funckije
+
+        options.forEach(option => {
+            option.addEventListener('click', function () {
+
+
+                //kreiram math number od 0 do 3 
+                const computerNumber = Math.floor(Math.random() * 3);
+                // spajam math.ranodm sa arrayom 
+                const computerChoice = computerOptions[computerNumber];
+
+
+            })
+        })
+
+
+    };
+
+
+    //   ovde pozivam sve inner funckije
     startGame();
-
+    playMatch();
 }
 // ovde pozivam glavnu funckiju koja ce povuci okidanje innerFunkcije unutar nje
 game();
