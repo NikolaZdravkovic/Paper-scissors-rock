@@ -27,9 +27,17 @@ const game = () => {
         const options = document.querySelectorAll('.options button');
         const playerHand = document.querySelector('.player-hand');
         const computerHand = document.querySelector('.computer-hand');
-        //Kompove opcije
+        //Kompjuter opcije
         //Pravim array kako bih prosao kroz loop kasnije
         const computerOptions = ['rock', 'paper', 'scissors'];
+        const hands = document.querySelectorAll('.hands img');
+
+        //Hand forEach funckija uz pomoc koje resetujemo animaciju svaki put nakon izvrsenja
+        hands.forEach(hand => {
+            hand.addEventListener('animationend', function () {
+                this.style.animation = '';
+            })
+        })
 
 
 
@@ -41,12 +49,20 @@ const game = () => {
                 const computerNumber = Math.floor(Math.random() * 3);
                 // spajam math.ranodm sa arrayom 
                 const computerChoice = computerOptions[computerNumber];
-                // Ovde pozivamo compareHands
-                compareHands(this.textContent, computerChoice)
-                // Menjamo slike u skladu sa izborom
+                // Ovde pozivamo compareHands/ setTimeout stavljam radi kasnjena izvrsenja animacije
 
-                playerHand.src = `./images/${this.textContent}.png`;
-                computerHand.src = `./images/${computerChoice}.png`;
+                setTimeout(() => {
+                    compareHands(this.textContent, computerChoice)
+                    // Menjamo slike u skladu sa izborom
+
+                    playerHand.src = `./images/${this.textContent}.png`;
+                    computerHand.src = `./images/${computerChoice}.png`;
+
+                }, 2000);
+                //pravim animacije za pomeranje ruku
+                playerHand.style.animation = "shakePlayer 2s ease";
+                computerHand.style.animation = "shakeComputer 2s ease";
+
 
 
             })
@@ -61,6 +77,8 @@ const game = () => {
 
         playerScore.textContent = scorePlayer; //definisali smo varijable iz html i dodelili mu vrednost scorePlayer
         computerScore.textContent = scoreComp; //definisali smo varijable iz html i dodelili mu vrednost scoreComp
+
+
     }
 
     // Ovde pisem logiku igrice sa uslovima 
